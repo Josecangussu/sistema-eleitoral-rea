@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sistema Eleitoral Brasileiro — Guia Mobile</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --main:#0b3b75;--accent:#63b3ed;--bg:#f4f6fb;--txt:#1e2532;--badge:#18a058
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;font-size:1.11rem;-webkit-tap-highlight-color:transparent}
+h1,h2{font-weight:700;color:var(--main)}
+
+/* banner + header */
+#banner{background:var(--main);color:#fff;font-size:.9rem;padding:.4rem .8rem;text-align:center}
+#banner b{font-weight:600}
+header{background:var(--main);color:#fff;padding:1.1rem;display:flex;justify-content:space-between;align-items:center}
+header h1{font-size:1.25rem;margin-bottom:.15rem}header small{font-size:.78rem}
+#font-controls button{background:#fff;color:var(--main);border:none;margin-left:.5rem;padding:.25rem .6rem;border-radius:6px;font-weight:700;cursor:pointer}
+
+/* progress sticky */
+#top-progress{height:6px;background:#cbd5e1;position:sticky;top:0;z-index:997}
+#top-progress-inner{height:100%;width:0;background:var(--accent);transition:.3s}
+.badge{background:var(--badge);color:#fff;border-radius:999px;padding:.2rem .55rem;font-size:.75rem;margin-left:.4rem}
+
+/* layout */
+main{max-width:900px;margin:auto;padding:1.2rem}
+section{background:#fff;border-radius:20px;padding:2.1rem 1.2rem;margin-bottom:2.1rem;box-shadow:0 3px 16px rgba(0,0,0,.07)}
+@media(max-width:600px){section{padding:1.2rem .7rem}body{font-size:1.16rem}h1{font-size:1.35rem}h2{font-size:1.08rem}}
+
+/* responsive YouTube */
+.video-container{position:relative;width:100%;padding-bottom:56.25%;margin-top:.6rem;border-radius:16px;overflow:hidden;background:#000}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* generic buttons */
+.tl-btn,.check-btn{background:var(--main);color:#fff;border:none;border-radius:12px;padding:.63rem 1.2rem;margin-top:.7rem;font-size:1.05rem;cursor:pointer;transition:background .18s,transform .13s}
+.tl-btn:active,.check-btn:active{background:#214d9b;transform:scale(.92)}
+
+/* timeline */
+#timeline-range{width:100%}
+#progress{height:10px;background:#cbd5e1;border-radius:7px;margin-top:1.1rem;overflow:hidden}
+#progress-bar{height:100%;width:0;background:var(--main);transition:.3s}
+
+/* infographic */
+#infographic .steps{display:flex;flex-direction:column;gap:1.05rem}
+#infographic .step{border:1.5px solid #cbd5e1;border-radius:10px;overflow:hidden}
+#infographic .step-header{background:var(--main);color:#fff;padding:1rem 1.1rem;font-size:1rem;cursor:pointer;font-weight:600;display:flex;align-items:center}
+#infographic .step-header:after{content:"▼";margin-left:auto;transition:.25s;transform:rotate(-90deg)}
+#infographic .step.expanded .step-header:after{transform:rotate(0)}
+#infographic .step-content{display:none;padding:1.1rem;background:#f1f5f9;font-size:.99rem}
+#infographic .step.expanded .step-content{display:block}
+
+/* curiosities */
+#curiosities li{background:#e2e8f0;margin:.8rem 0;padding:.95rem 1.3rem;border-radius:7px;border-left:5px solid var(--main)}
+
+/* quiz */
+.quiz-question{margin-bottom:2.1rem}
+.quiz-option{display:block;padding:.75rem 1.1rem;margin:.55rem 0;border:1.3px solid #b7c0d1;border-radius:13px;cursor:pointer;font-size:1.07rem}
+.quiz-option.selected{background:#e0e7ff;border-color:#3f51b5}
+.quiz-option.correct{background:#c8e6c9;border-color:#2e7d32}
+.quiz-option.incorrect{background:#ffcdd2;border-color:#c62828}
+.score-box{background:var(--main);color:#fff;text-align:center;border-radius:13px;padding:1rem 1.2rem;font-weight:600}
+</style>
+</head>
+
+<body>
+<div id="banner"><b>Recurso Educacional Aberto.</b> Sistema Eleitoral Brasileiro. José Francisco Fagundes Cangussu, UFRGS</div>
+<header>
+  <div><h1>Sistema Eleitoral Brasileiro</h1><small>Guia interativo • CC-BY 4.0</small></div>
+  <div id="font-controls"><button id="font-dec">A−</button><button id="font-inc">A+</button></div>
+</header>
+<div id="top-progress"><div id="top-progress-inner"></div></div>
+
+<main>
+<!-- Objetivos -->
+<section id="goals">
+  <h2>O que você vai aprender</h2>
+  <ul style="padding-left:1.2rem">
+    <li>Competência 5 da BNCC – habilidade <strong>EM13CHS603</strong>.</li>
+    <li>Identificar grandes marcos do sistema eleitoral brasileiro no período pós-ditadura.</li>
+    <li>Compreender as regras e o funcionamento do sistema eleitoral brasileiro.</li>
+  </ul>
+</section>
+
+<!-- Vídeo YouTube cortado -->
+<section id="intro-video">
+  <h2>Assista primeiro (4 min 43 s)</h2>
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/M5eXCGEk8AQ?start=0&end=283&rel=0&modestbranding=1&playsinline=1"
+            title="Sistema Eleitoral Brasileiro" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <button id="show-reflection" class="tl-btn">Continuar</button>
+
+  <div id="reflection" style="display:none;margin-top:1.2rem">
+    <h3>Reflexão rápida</h3>
+    <p>Qual é a principal função da Justiça Eleitoral?</p>
+    <label><input type="radio" name="r1" value="0"> Fiscalizar partidos</label><br>
+    <label><input type="radio" name="r1" value="1"> Organizar e garantir a lisura das eleições</label><br>
+    <button id="check-reflect" class="tl-btn" style="margin-top:.6rem">Verificar</button>
+    <p id="reflect-feedback"></p>
+  </div>
+</section>
+
+<!-- Linha do tempo -->
+<section id="timeline">
+  <h2>Linha do Tempo (1989 → 2021)</h2>
+  <div style="display:flex;gap:.6rem;align-items:center">
+    <button id="prev" class="tl-btn">◀</button>
+    <input type="range" id="timeline-range" min="0" value="0">
+    <button id="next" class="tl-btn">▶</button>
+  </div>
+  <div style="font-size:.93rem;opacity:.75;margin:.5em 0 .2em;">Dica: deslize ou use os botões</div>
+  <h3 id="event-title"></h3><p id="event-desc"></p>
+  <div id="progress"><div id="progress-bar"></div></div>
+  <p id="xp" style="margin-top:.55rem;font-weight:600;color:var(--main)"></p>
+</section>
+
+<!-- Infográfico -->
+<section id="infographic">
+  <h2>Como Funciona o Voto no Brasil</h2>
+  <div class="steps">
+    <div class="step"><div class="step-header" tabindex="0">1. Quem pode votar?</div>
+      <div class="step-content">
+        • Alistamento obrigatório a partir dos 18 anos; facultativo 16-17, +70 e analfabetos.<br>
+        • Cadastro on-line disponível pelo sistema Título Net do TSE.<br>
+        • O app e-Título substitui o documento impresso desde 2017.<br>
+        • Quem não vota nem justifica paga multa e fica restrito em concursos e passaporte.
+      </div></div>
+    <div class="step"><div class="step-header" tabindex="0">2. Títulos e Biometria</div>
+      <div class="step-content">
+        • O título traz nº de inscrição, zona e seção eleitoral.<br>
+        • Coleta biométrica iniciou em 2008 para inibir fraudes.<br>
+        • Em 2022, ~80 % do eleitorado já tinha biometria (TSE).<br>
+        • Regularizações e 2ª via podem ser solicitadas on-line.
+      </div></div>
+    <div class="step"><div class="step-header" tabindex="0">3. Urna Eletrônica</div>
+      <div class="step-content">
+        • Equipamento off-line com hardware auditável e software aberto a partidos.<br>
+        • Zerésima comprova “0 voto” antes da abertura da seção.<br>
+        • Boletim de Urna impresso traz voto total por seção.<br>
+        • Transmissão usa rede privada criptografada e assinatura digital.
+      </div></div>
+    <div class="step"><div class="step-header" tabindex="0">4. Apuração e Resultados</div>
+      <div class="step-content">
+        • Totalização em data centers isolados do TSE e TREs.<br>
+        • Resultados em tempo real no app “Resultados”.<br>
+        • Boletins podem ser conferidos por qualquer cidadão.<br>
+        • País conhece todos os eleitos em poucas horas.
+      </div></div>
+  </div>
+</section>
+
+<!-- Curiosidades -->
+<section id="curiosities">
+  <h2>Curiosidades</h2>
+  <ul>
+    <li><strong>Você sabia?</strong> Em 1932, as mulheres conquistaram o direito ao voto no Brasil.</li>
+    <li><strong>Você sabia?</strong> Até 1988, menores de 18 anos eram proibidos de votar.</li>
+    <li><strong>Você sabia?</strong> Votos em trânsito existem desde 2010 e valem só para presidente.</li>
+    <li><strong>Você sabia?</strong> Desde 2000 o Brasil realiza eleições 100 % informatizadas.</li>
+    <li><strong>Você sabia?</strong> O TSE foi criado em 1932 e integrou o Judiciário em 1945.</li>
+    <li><strong>Você sabia?</strong> Mais de 2 milhões de mesários atuam voluntariamente a cada eleição.</li>
+  </ul>
+</section>
+
+<!-- Simulador proporcional -->
+<section id="simulator">
+  <h2>Teste a distribuição proporcional</h2>
+  <p>Insira votos de até 4 partidos para 10 vagas.</p>
+  <div id="inputs" style="display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+    <input placeholder="Partido A" type="number" min="0">
+    <input placeholder="Partido B" type="number" min="0">
+    <input placeholder="Partido C" type="number" min="0">
+    <input placeholder="Partido D" type="number" min="0">
+  </div>
+  <button id="run-sim" class="tl-btn" style="margin-top:1rem">Calcular</button>
+  <div id="sim-result" style="margin-top:1rem"></div>
+</section>
+
+<!-- Quiz -->
+<section id="quiz">
+  <h2>Quiz</h2>
+  <div id="score" class="score-box" aria-live="polite">Pontuação: 0 / 12</div>
+  <div id="quiz-container"></div>
+</section>
+</main>
+
+<!-- Resultado final -->
+<section id="final-results" style="display:none;text-align:center;margin:2rem 1rem">
+  <h2>Resultado Final</h2>
+  <div id="score-final" class="score-box" style="margin:auto"></div>
+  <button id="restart-btn" class="tl-btn" style="margin-top:1rem">Tentar novamente</button>
+</section>
+
+<!-- compartilhar -->
+<button onclick="sharePage()" style="position:fixed;left:18px;bottom:18px;background:var(--accent);color:#fff;border:none;border-radius:40px;padding:.7em 1.2em;font-weight:600">Compartilhar</button>
+
+<script>
+/* Fonte */
+let fs=+sessionStorage.getItem('fs')||1;
+const setFs=()=>{document.documentElement.style.fontSize=(1.11*fs)+'rem';sessionStorage.setItem('fs',fs)};
+document.getElementById('font-inc').onclick=()=>{fs=Math.min(1.5,fs+.1);setFs()};
+document.getElementById('font-dec').onclick=()=>{fs=Math.max(.8,fs-.1);setFs()};setFs();
+
+/* Mostrar reflexão só após clicar */
+document.getElementById('show-reflection').onclick=()=>{
+  document.getElementById('reflection').style.display='block';
+  document.getElementById('show-reflection').style.display='none';
+};
+document.getElementById('check-reflect').onclick=()=>{
+  const a=[...document.querySelectorAll('input[name=r1]')].find(r=>r.checked);
+  if(!a)return;
+  const fb=document.getElementById('reflect-feedback');
+  fb.textContent=a.value==='1'?'Correto!':'Não é isso, tente novamente.';
+  fb.style.color=a.value==='1'?'green':'red';
+};
+
+/* Linha do tempo */
+const events=[
+ {y:1989,t:"Primeira eleição direta",d:"Collor eleito; fim do ciclo sem voto popular para presidente."},
+ {y:1993,t:"Plebiscito da forma de governo",d:"Eleitorado decide manter a república presidencialista."},
+ {y:1997,t:"Emenda da reeleição",d:"Autoriza reeleição consecutiva para cargos do Executivo."},
+ {y:2000,t:"Urna eletrônica nacional",d:"100 % do eleitorado passa a votar em urna eletrônica."},
+ {y:2006,t:"Registro Digital do Voto",d:"Urnas passam a gerar arquivo de auditoria (RDV)."},
+ {y:2009,t:"Lei das Cotas de Gênero",d:"Lei 12.034 fixa mínimo de 30 % de candidaturas femininas."},
+ {y:2010,t:"Lei da Ficha Limpa",d:"Inelegibilidade de condenados por órgão colegiado (8 anos)."},
+ {y:2014,t:"Biometria ampliada",d:"Mais de 20 milhões de eleitores usam identificação biométrica."},
+ {y:2017,t:"Minirreforma eleitoral",d:"Cláusula de desempenho e fim de coligações proporcionais."},
+ {y:2021,t:"Federações partidárias",d:"Lei 14.208 cria federações de 4 anos como alternativa às coligações."}
+];
+const range=document.getElementById('timeline-range'),ttl=document.getElementById('event-title'),desc=document.getElementById('event-desc'),pb=document.getElementById('progress-bar'),xp=document.getElementById('xp');
+range.max=events.length-1;const seen=Array(events.length).fill(false);
+function show(i){const e=events[i];ttl.textContent=`${e.y} — ${e.t}`;desc.textContent=e.d;seen[i]=true;range.value=i;pb.style.width=100*seen.filter(Boolean).length/events.length+'%';xp.textContent=`${seen.filter(Boolean).length}/${events.length} eventos`}
+document.getElementById('prev').onclick=()=>show(Math.max(0,+range.value-1));
+document.getElementById('next').onclick=()=>show(Math.min(events.length-1,+range.value+1));
+range.oninput=e=>show(+e.target.value);show(0);
+
+/* Infográfico toggle */
+document.querySelectorAll('#infographic .step-header').forEach(h=>{
+ h.onclick=()=>h.parentElement.classList.toggle('expanded');
+ h.onkeydown=e=>{if(e.key===' '||e.key==='Enter')h.click()}
+});
+
+/* Simulador proporcional */
+function dhondt(v,se){const q=[];v.forEach((val,i)=>{for(let d=1;d<=se;d++)q.push({p:i,v:val/d})});
+ q.sort((a,b)=>b.v-a.v);const al=Array(v.length).fill(0);q.slice(0,se).forEach(e=>al[e.p]++);return al}
+document.getElementById('run-sim').onclick=()=>{
+ const v=[...document.querySelectorAll('#inputs input')].map(i=>+i.value||0).filter(x=>x>0);
+ if(v.length<2){alert('Informe pelo menos dois partidos');return;}
+ const r=dhondt(v,10);
+ document.getElementById('sim-result').innerHTML=v.map((_,i)=>`Partido ${String.fromCharCode(65+i)}: <strong>${r[i]||0}</strong> vagas`).join('<br>');
+};
+
+/* Quiz */
+const q=[
+ {q:"O sistema proporcional para deputados busca…",o:["Garantir maiorias absolutas","Refletir a diversidade do eleitorado","Eliminar partidos pequenos","Favorecer coligações regionais"],a:1},
+ {q:"A Lei da Ficha Limpa torna inelegível por quanto tempo o condenado em 2ª instância?",o:["3 anos","4 anos","8 anos","12 anos"],a:2},
+ {q:"Qual é a duração do mandato de um(a) senador(a) no Brasil?",o:["4 anos","6 anos","8 anos","10 anos"],a:2},
+ {q:"Em qual esfera atua um(a) prefeito(a)?",o:["Federal","Estadual","Municipal","Interfederativa"],a:2},
+ {q:"A duração do mandato de um(a) deputado(a) federal é de…",o:["2 anos","4 anos","6 anos","8 anos"],a:1},
+ {q:"Cada estado e o DF elegem quantos senadores?",o:["5","3","2","1"],a:1},
+ {q:"Qual a cota mínima de candidaturas femininas nas eleições proporcionais?",o:["10 %","25 %","30 %","50 %"],a:2},
+ {q:"Uma federação partidária deve durar pelo menos…",o:["2 anos","4 anos","8 anos","Até o fim da legislatura"],a:1},
+ {q:"Votos em branco e nulos contam para o quociente eleitoral?",o:["Apenas o branco","Apenas o nulo","Ambos são excluídos","Nenhum"],a:2},
+ {q:"Eleições municipais ocorrem a cada…",o:["2 anos","4 anos","5 anos","6 anos"],a:1},
+ {q:"O voto passa a ser FACULTATIVO a partir de que idade?",o:["14","16","18","21"],a:1},
+ {q:"Vender o voto é crime punido com até…",o:["1 mês de detenção","Apenas multa","4 anos de reclusão","Perda do título"],a:2}
+];
+const quizC=document.getElementById('quiz-container'),scoreBx=document.getElementById('score'),scoreFin=document.getElementById('score-final'),restart=document.getElementById('restart-btn');
+let sc=0;function upd(){scoreBx.textContent=`Pontuação: ${sc} / ${q.length}`}
+function renderQuiz(){sc=0;upd();quizC.innerHTML='';scoreFin.parentElement.style.display='none';
+ q.forEach((obj,idx)=>{const d=document.createElement('div');d.className='quiz-question';d.innerHTML=`<p>${idx+1}. ${obj.q}</p>`;
+   obj.o.forEach((t,i)=>{const l=document.createElement('label');l.className='quiz-option';l.textContent=t;l.onclick=()=>sel(l,idx);d.appendChild(l)});
+   const b=document.createElement('button');b.className='check-btn';b.textContent='Verificar';b.onclick=()=>check(idx,d);d.appendChild(b);quizC.appendChild(d)});
+}
+function sel(el,idx){quizC.children[idx].querySelectorAll('.quiz-option').forEach(o=>{o.dataset.sel=0;o.classList.remove('selected')});el.dataset.sel=1;el.classList.add('selected')}
+function check(idx,d){if(d.dataset.done)return;const sel=[...d.querySelectorAll('.quiz-option')].find(o=>o.dataset.sel==='1');if(!sel)return;
+ const i=[...d.querySelectorAll('.quiz-option')].indexOf(sel);if(i===q[idx].a){sel.classList.add('correct');sc++}else{sel.classList.add('incorrect');d.querySelectorAll('.quiz-option')[q[idx].a].classList.add('correct')}
+ d.dataset.done=1;upd();if([...quizC.children].every(x=>x.dataset.done)){scoreFin.textContent=`Você acertou ${sc} de ${q.length} questões!`;scoreFin.parentElement.style.display='block';restart.style.display='inline-block';}}
+restart.onclick=renderQuiz;renderQuiz();
+
+/* share */
+function sharePage(){navigator.share?navigator.share({title:document.title,url:location.href}):prompt('Copie o link:',location.href)}
+</script>
+</body>
+</html>
